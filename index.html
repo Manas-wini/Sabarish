@@ -53,7 +53,7 @@ Join us in making memories that will last a lifetime!</h2>
   </section>
 
   <!-- 💌 Section 4: RSVP -->
-<section class="px-8 py-12 bg-pink-100 text-center">
+  <section class="px-8 py-12 bg-pink-100 text-center">
   <h2 class="text-2xl font-semibold mb-4">Will You Be There To Celebrate With Us?</h2>
   <div class="flex justify-center gap-10 text-5xl">
     <button onclick="handleRSVP(true)">❤️</button>
@@ -61,7 +61,7 @@ Join us in making memories that will last a lifetime!</h2>
   </div>
   <div id="rsvpPopup" class="mt-8 hidden space-y-2">
     <input type="text" id="guestName" placeholder="Your Name" class="p-2 rounded border">
-    <textarea id="guestMessage" placeholder="Leave a message for the couple" rows="3" class="p-2 rounded border hidden w-full resize-none"></textarea>
+    <!-- Message field appears dynamically -->
     <button onclick="submitRSVP()" class="ml-2 bg-pink-300 px-4 py-2 rounded">Submit</button>
   </div>
   <p id="rsvpMessage" class="mt-4 text-xl font-medium"></p>
@@ -77,43 +77,73 @@ Join us in making memories that will last a lifetime!</h2>
 
   <!-- 💻 JS for RSVP and Countdown -->
   <script>
-    function handleRSVP(isComing) {
-      document.getElementById('rsvpPopup').classList.remove('hidden');
-      document.getElementById('rsvpPopup').dataset.coming = isComing;
+  let isAttending = true;
+
+  function handleRSVP(attending) {
+    isAttending = attending;
+    const popup = document.getElementById('rsvpPopup');
+    popup.classList.remove('hidden');
+
+    const existingMessage = document.getElementById('guestMessage');
+
+    if (!attending && !existingMessage) {
+      const messageInput = document.createElement('textarea');
+      messageInput.id = 'guestMessage';
+      messageInput.placeholder = 'Leave a message for the couple';
+      messageInput.rows = 3;
+      messageInput.className = 'p-2 rounded border w-full resize-none';
+      popup.insertBefore(messageInput, popup.children[1]); // add above the submit button
+    } else if (attending && existingMessage) {
+      existingMessage.remove();
     }
 
-    function submitRSVP() {
-  const name = document.getElementById('guestName').value.trim();
-  const attending = currentRSVPStatus;
-  const messageInput = document.getElementById('guestMessage');
-  const message = messageInput && !attending ? messageInput.value.trim() : "";
-
-  if (!name) {
-    alert("Please enter your name!");
-    return;
+    document.getElementById('rsvpMessage').textContent = '';
   }
 
-  // Show final message
-  const messageText = attending 
-    ? `We can't wait to see you, ${name}! 💖` 
-    : `We'll miss you, ${name}. 💔`;
-  document.getElementById("rsvpMessage").innerText = messageText;
+  function submitRSVP() {
+    const name = document.getElementById('guestName').value.trim();
+    const messageField = document.getElementById('guestMessage');
+    const message = (!isAttending && messageField) ? messageField.value.trim() : "";
 
-  // Hide input fields
-  document.getElementById("rsvpPopup").classList.add("hidden");
-
-  // Send data to Google Sheet
-  fetch("https://script.google.com/macros/s/AKfycbzXDT2EKfj9CkH1hs2jDJh6KopO8DqnELzSfgxWQvi4zHyPbKaGmzRrccdyYTnxYYDM/exec", {
-    method: "POST",
-    body: JSON.stringify({ name, attending, message }),
-    headers: {
-      "Content-Type": "application/json"
+    if (!name) {
+      alert("Please enter your name!");
+      return;
     }
-  })
-  .then(res => res.json())
-  .then(data => console.log("RSVP submitted:", data))
-  .catch(err => console.error("Error submitting RSVP:", err));
-}
+
+    if (!isAttending && !message) {
+      alert("Please leave a message for the couple!");
+      return;
+    }
+
+    // Show confirmation message
+    const rsvpMessage = document.getElementById('rsvpMessage');
+    rsvpMessage.textContent = isAttending
+      ? `We can't wait to see you, ${name}! 💖`
+      : `We'll miss you, ${name}. 💔`;
+
+    // Hide the form
+    document.getElementById('rsvpPopup').classList.add('hidden');
+    document.getElementById('guestName').value = '';
+    if (messageField) messageField.value = '';
+
+    // Send to Google Sheets
+    fetch("https://script.google.com/macros/s/AKfycbzXDT2EKfj9CkH1hs2jDJh6KopO8DqnELzSfgxWQvi4zHyPbKaGmzRrccdyYTnxYYDM/exec", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        attending: isAttending,
+        message: isAttending ? '' : message
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(data => console.log("RSVP submitted:", data))
+    .catch(err => console.error("Error submitting RSVP:", err));
+  }
+</script>
+
 
     // Countdown to 07.07.2025
     const weddingDate = new Date("2025-07-07T00:00:00");
@@ -128,56 +158,6 @@ Join us in making memories that will last a lifetime!</h2>
       countdownEl.textContent = \`\${days} Days \${String(hours).padStart(2, '0')}:\${String(minutes).padStart(2, '0')}:\${String(seconds).padStart(2, '0')}\`;
     }, 1000);
   </script>
-  <script>
-  let isAttending = true;
-
-function handleRSVP(attending) {
-  isAttending = attending;
-  document.getElementById('rsvpPopup').classList.remove('hidden');
-  
-  const messageField = document.getElementById('guestMessage');
-  if (!attending) {
-    messageField.classList.remove('hidden'); // Show message input if they're not attending
-  } else {
-    messageField.classList.add('hidden'); // Hide message input if they are attending
-  }
-
-  document.getElementById('rsvpMessage').textContent = '';
-}
-
-function submitRSVP() {
-  const name = document.getElementById('guestName').value.trim();
-  const message = document.getElementById('guestMessage').value.trim();
-
-  if (!name) {
-    alert("Please enter your name!");
-    return;
-  }
-
-  if (!isAttending && !message) {
-    alert("Please leave a message for the couple!");
-    return;
-  }
-
-  // Save data (send to backend later!)
-  console.log("RSVP:", {
-    name,
-    attending: isAttending,
-    message: isAttending ? '' : message
-  });
-
-  // Show message
-  const rsvpMessage = document.getElementById('rsvpMessage');
-  rsvpMessage.textContent = isAttending
-    ? `We can't wait to see you there, ${name}! 💖`
-    : `We'll miss you, ${name}. 💔`;
-
-  // Hide the form again
-  document.getElementById('rsvpPopup').classList.add('hidden');
-  document.getElementById('guestName').value = '';
-  document.getElementById('guestMessage').value = '';
-}
-  </script>
-
+ 
 </body>
 </html>
