@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore More</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-[#2b192e] text-[#f5e8da]">
+
+  <!-- Header -->
+  <header class="w-full bg-[#f5e8da] p-4">
+    <img src="adb.jpg" alt="Explore Header" class="w-full h-auto mx-auto" />
+  </header>
+
+  <!-- Invitations Section -->
+  <section id="invitations" class="px-8 py-12 bg-[#2b192e]">
+    <img src="INSERT_INVITATION_IMAGE_HERE.jpg" alt="Invitation Details" class="mx-auto rounded-xl shadow-lg" />
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="px-8 py-12 bg-[#2b192e]">
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Left: July 6th -->
+      <div>
+        <h2 class="text-2xl font-bold mb-6">6th July, Saturday</h2>
+        <div class="space-y-4">
+          <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md">Vritham – 7:30 AM onwards</div>
+          <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md">Nishchaya Thamboolam – 10:30 AM onwards</div>
+          <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md">Reception – 6:30 PM onwards</div>
+        </div>
+      </div>
+
+      <!-- Right: July 7th -->
+      <div>
+        <h2 class="text-2xl font-bold mb-6">7th July, Sunday</h2>
+        <div class="space-y-4">
+          <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md">Kasi Yatra – 7:00 AM onwards</div>
+          <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md">Muhurtham – 9:30 AM onwards</div>
+
+          <!-- Restricted Access Section -->
+          <div id="restricted-events" class="hidden">
+            <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md">Nalangu – 2:00 PM onwards</div>
+            <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md">After Party – 5:00 PM onwards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venue Section -->
+  <section id="venue" class="px-8 py-12 bg-[#2b192e]">
+    <h2 class="text-2xl font-bold mb-4">Venue</h2>
+    <p class="mb-6">No. 55, Habibullah Rd, Satyamurthy Nagar, T. Nagar, Chennai, Tamil Nadu 600017</p>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7777.940889581941!2d80.232692!3d13.046520!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526641cc28a43d%3A0x123456789abcdef!2sHabibullah%20Rd!5e0!3m2!1sen!2sin!4v1234567890"
+      width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="px-8 py-12 bg-[#2b192e]">
+    <h2 class="text-2xl font-bold mb-6">Menu</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <!-- 8 Placeholder Cards -->
+      <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md text-center">Coming Soon</div>
+      <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md text-center">Coming Soon</div>
+      <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md text-center">Coming Soon</div>
+      <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md text-center">Coming Soon</div>
+      <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md text-center">Coming Soon</div>
+      <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md text-center">Coming Soon</div>
+      <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md text-center">Coming Soon</div>
+      <div class="bg-pink-50 text-[#2b192e] p-6 rounded-xl shadow-md text-center">Coming Soon</div>
+    </div>
+  </section>
+
+  <script>
+    // Reveal restricted events if URL has ?invite=golden
+    const urlParams = new URLSearchParams(window.location.search);
+    const invite = urlParams.get('invite');
+    if (invite === 'golden') {
+      document.getElementById('restricted-events').classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
