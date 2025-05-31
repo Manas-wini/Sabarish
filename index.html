@@ -122,6 +122,55 @@ Join us in making memories that will last a lifetime!</h2>
     }
   }
 </script>
+<script>
+  let isAttending = null;
+
+  function handleRSVP(attending) {
+    isAttending = attending;
+    const popup = document.getElementById("rsvpPopup");
+    const guestName = document.getElementById("guestName");
+    const message = document.getElementById("rsvpMessage");
+
+    // Reset stuff
+    guestName.value = "";
+    message.textContent = "";
+    popup.classList.remove("hidden");
+
+    // Update placeholder
+    guestName.placeholder = attending 
+      ? "Your Name" 
+      : "Your Name + A Message for the Couple";
+  }
+
+  function submitRSVP() {
+    const nameInput = document.getElementById("guestName").value.trim();
+    const message = document.getElementById("rsvpMessage");
+
+    if (!nameInput) {
+      message.textContent = "Please enter your name!";
+      return;
+    }
+
+    // Show confirmation message
+    if (isAttending) {
+      message.textContent = `We look forward to seeing you there, ${nameInput}! 🎉`;
+    } else {
+      message.textContent = `We'll miss you, ${nameInput}. 💌 Thank you for the message!`;
+    }
+
+    // Log the RSVP in a backend (COMING NEXT!)
+    sendRSVPToBackend(nameInput, isAttending);
+    
+    // Hide the input after submitting
+    document.getElementById("rsvpPopup").classList.add("hidden");
+  }
+
+  // Placeholder: connect this to a real backend later!
+  function sendRSVPToBackend(name, attending) {
+    console.log("RSVP Submitted:", { name, attending });
+    // Later we’ll hook this into Formspree or Google Sheets!
+  }
+</script>
 
 </body>
 </html>
