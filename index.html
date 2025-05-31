@@ -83,14 +83,37 @@ Join us in making memories that will last a lifetime!</h2>
     }
 
     function submitRSVP() {
-      const name = document.getElementById('guestName').value;
-      const coming = document.getElementById('rsvpPopup').dataset.coming === 'true';
-      const message = coming
-        ? \`We look forward to seeing you, \${name}!\`
-        : \`You’ll be missed, \${name}. Thank you for your wishes!\`;
-      document.getElementById('rsvpMessage').textContent = message;
-      document.getElementById('rsvpPopup').classList.add('hidden');
+  const name = document.getElementById('guestName').value.trim();
+  const attending = currentRSVPStatus;
+  const messageInput = document.getElementById('guestMessage');
+  const message = messageInput && !attending ? messageInput.value.trim() : "";
+
+  if (!name) {
+    alert("Please enter your name!");
+    return;
+  }
+
+  // Show final message
+  const messageText = attending 
+    ? `We can't wait to see you, ${name}! 💖` 
+    : `We'll miss you, ${name}. 💔`;
+  document.getElementById("rsvpMessage").innerText = messageText;
+
+  // Hide input fields
+  document.getElementById("rsvpPopup").classList.add("hidden");
+
+  // Send data to Google Sheet
+  fetch("https://script.google.com/macros/s/AKfycbzXDT2EKfj9CkH1hs2jDJh6KopO8DqnELzSfgxWQvi4zHyPbKaGmzRrccdyYTnxYYDM/exec", {
+    method: "POST",
+    body: JSON.stringify({ name, attending, message }),
+    headers: {
+      "Content-Type": "application/json"
     }
+  })
+  .then(res => res.json())
+  .then(data => console.log("RSVP submitted:", data))
+  .catch(err => console.error("Error submitting RSVP:", err));
+}
 
     // Countdown to 07.07.2025
     const weddingDate = new Date("2025-07-07T00:00:00");
