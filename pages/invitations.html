@@ -1,8 +1,50 @@
 <!DOCTYPE html>
-<html>
-<head><title>Invitations</title></head>
-<body>
-  <h1>Welcome to the Invitations Page!</h1>
-  <p>This is just a placeholder 🥰</p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitation | Manaswini & Sabarish</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .hidden { display: none; }
+</style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+  <header class="text-center py-6 bg-pink-50">
+    <h1 class="text-3xl font-bold">You're Invited!</h1>
+  </header>
+
+  <main class="px-8 py-12">
+<div id="invite-bride" class="hidden">
+  <h2 class="text-2xl font-semibold text-pink-700 mb-4">From the Bride's Family</h2>
+  <p>You are warmly invited to our cherished daughter's wedding celebration.</p>
+</div>
+
+<div id="invite-groom" class="hidden">
+  <h2 class="text-2xl font-semibold text-blue-700 mb-4">From the Groom's Family</h2>
+  <p>Join us in celebrating the joyous union of our beloved son.</p>
+</div>
+
+<div id="invite-couple" class="hidden">
+  <h2 class="text-2xl font-semibold text-green-700 mb-4">From the Couple</h2>
+  <p>We found love — now we want to celebrate with you!</p>
+</div>
+
+<div id="invite-golden" class="hidden">
+  <h2 class="text-2xl font-semibold text-yellow-700 mb-4">You’re One of the Chosen Few ✨</h2>
+  <p>Welcome to the full celebration itinerary and our deepest gratitude for walking this journey with us.</p>
+</div>
+      </main>
+  <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const inviteType = urlParams.get('invite');
+
+  if (inviteType) {
+    const section = document.getElementById(`invite-${inviteType}`);
+    if (section) {
+      section.classList.remove('hidden');
+    }
+  }
+</script>
 </body>
 </html>
