@@ -67,13 +67,19 @@ Join us in making memories that will last a lifetime!</h2>
   <p id="rsvpMessage" class="mt-4 text-xl font-medium"></p>
 </section>
 
-   <!-- ⏳ Footer: Countdown + Sign off -->
-  <footer class="px-8 py-8 bg-pink-50 text-center">
-    <div class="text-lg font-semibold mb-2">Countdown to the Big Day</div>
-    <div id="countdown" class="text-3xl font-bold mb-4">00 Days 00:00:00</div>
-    <p>With love,  
-      <br>Manaswini & Sabarish</p>
-  </footer>
+  <!-- ⏳ Footer: Countdown + Sign off -->
+<footer class="px-8 py-8 bg-pink-50 text-center" id="footerSection">
+  <div id="countdownText" class="text-lg font-semibold mb-2">
+    We're getting married in...
+  </div>
+  <div id="countdown" class="flex justify-center gap-4 text-pink-600 text-xl font-bold mb-4">
+    <div><span id="days">00</span> Days</div>
+    <div><span id="hours">00</span> Hrs</div>
+    <div><span id="minutes">00</span> Min</div>
+    <div><span id="seconds">00</span> Sec</div>
+  </div>
+  <p id="signOff">With love,<br>Manaswini & Sabarish</p>
+</footer>
 
   <!-- 💻 JS for RSVP and Countdown -->
   <script>
@@ -144,20 +150,48 @@ Join us in making memories that will last a lifetime!</h2>
   }
 </script>
 
+<script>
+  const weddingDate = new Date("2025-07-07T00:00:00");
+  const ceremonyTime = new Date("2025-07-07T10:00:00");
 
-    // Countdown to 07.07.2025
-    const weddingDate = new Date("2025-07-07T00:00:00");
-    const countdownEl = document.getElementById("countdown");
-    setInterval(() => {
-      const now = new Date();
-      const diff = weddingDate - now;
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
+  const countdownText = document.getElementById("countdownText");
+  const signOff = document.getElementById("signOff");
+  const footerSection = document.getElementById("footerSection");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (now >= ceremonyTime) {
+      // After 10 AM on the wedding day
+      document.getElementById("countdown").style.display = "none";
+      countdownText.textContent = "Just Married!! Thank you for celebrating with us!";
+      signOff.innerHTML = "With love,<br>Manaswini & Sabarish";
+    } else if (diff <= 0) {
+      // Wedding day, before 10 AM
+      document.getElementById("countdown").style.display = "none";
+      countdownText.textContent = "We're getting married TODAY! 💍";
+    } else {
+      // Before the wedding
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
-      countdownEl.textContent = \`\${days} Days \${String(hours).padStart(2, '0')}:\${String(minutes).padStart(2, '0')}:\${String(seconds).padStart(2, '0')}\`;
-    }, 1000);
-  </script>
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown(); // run once at load
+</script>
  
 </body>
 </html>
