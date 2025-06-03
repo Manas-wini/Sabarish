@@ -52,5 +52,90 @@
     <p>So upload your faves, scroll through the memory wall, and help us build the wedding album no one saw coming — yours.</p>
   </section>
 
+  <!-- CONTINUING INSIDE guestgallery.html -->
+<style>
+  .upload-section {
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .upload-icon {
+    font-size: 4rem;
+    color: #2b192e;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .upload-instructions {
+    max-width: 600px;
+    margin: 1.5rem auto;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .upload-form {
+    display: none;
+    margin-top: 2rem;
+    background-color: #f5e8da;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .upload-form input[type="text"],
+  .upload-form input[type="file"] {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0.75rem;
+    font-family: 'Ovo', serif;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+
+  .upload-form button[type="submit"] {
+    background-color: #2b192e;
+    color: #f5e8da;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Ovo', serif;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .upload-form button[type="submit"]:hover {
+    background-color: #3a2242;
+  }
+</style>
+
+<section class="upload-section">
+  <button class="upload-icon" onclick="toggleForm()">📷</button>
+  <div class="upload-instructions">
+    <p><strong>Here’s how to add your memories to the album:</strong></p>
+    <p>Click the camera icon to get started</p>
+    <p>Enter your full name (so there’s no mix up and we can keep your folder uniquely yours!)</p>
+    <p>Upload up to 25 photos or videos — (anything under 300MB total)</p>
+    <p>Hit submit and you’re done!</p>
+    <p>That’s it! Your moments will join the Guest Gallery soon — and yes, you can come back and upload again if you've got more to share later 💛</p>
+  </div>
+
+  <form class="upload-form" method="POST" action="https://formspree.io/f/{your-form-id}" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Your Full Name" required>
+    <input type="file" name="files" accept="image/*,video/*" multiple required>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<script>
+  function toggleForm() {
+    const form = document.querySelector('.upload-form');
+    form.style.display = form.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
+
 </body>
 </html>
