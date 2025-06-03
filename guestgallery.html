@@ -253,7 +253,104 @@
   </a>
 </section>
 
+  <style>
+  .faq-section {
+    background-color: #2b192e;
+    color: #f5e8da;
+    padding: 3rem 2rem;
+    font-family: 'OVO', serif;
+  }
 
+  .faq-title {
+    font-size: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #f5e8da55;
+    padding: 1rem 0;
+  }
+
+  .faq-question {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding-left: 1.5rem;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 300px;
+    padding-top: 0.5rem;
+  }
+
+  .faq-icon {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+</style>
+
+<section class="faq-section">
+  <h2 class="faq-title">💬 Still have questions? We've got you covered - Here are your FAQs</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">📸 How many photos can I upload? <span class="faq-icon">+</span></div>
+    <div class="faq-answer">You can upload up to 25 photos or videos at a time (as long as the total size is under 300MB).</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">🔁 Can I upload more than once? <span class="faq-icon">+</span></div>
+    <div class="faq-answer">Totally! Come back and upload as many times as you’d like — more magic, more memories, more fun for everyone.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">🧍🏽‍♀️ What name should I use while uploading? <span class="faq-icon">+</span></div>
+    <div class="faq-answer">Use your full name so we can keep things organized (and avoid duplicates). If you’re sharing your bingo challenge snaps, just add +BINGO at the end — like Manas + BINGO!</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">🎥 Can I share longer videos? <span class="faq-icon">+</span></div>
+    <div class="faq-answer">If your video doesn’t fit the size limit, you can share it directly with us via Google Drive - Guest Gallery or mail it to us at <a href="mailto:manaswinisabarish@gmail.com" style="color: #fdd3a1;">manaswinisabarish@gmail.com</a>. (These won’t show up on the gallery wall immediately, but we’ll curate them and make sure they get uploaded ASAP)</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">👀 Who can see the photos I upload? <span class="faq-icon">+</span></div>
+    <div class="faq-answer">Only guests with access to this site can scroll through the photo wall. This is a private celebration space.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">❌ Can I ask for certain pictures to be taken down? <span class="faq-icon">+</span></div>
+    <div class="faq-answer">Absolutely. If there's anything you'd like us to take off the wall — for any reason — just drop us a message and we’ll remove it, no questions asked.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">🆘 I’m having trouble uploading — what do I do? <span class="faq-icon">+</span></div>
+    <div class="faq-answer">No worries! If the uploader’s being fussy or you’re not sure something went through, feel free to try again later or email us! We’ll make sure your memories get in.</div>
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      item.classList.toggle('active');
+      const icon = question.querySelector('.faq-icon');
+      icon.textContent = item.classList.contains('active') ? '−' : '+';
+    });
+  });
+</script>
 
 </body>
 </html>
