@@ -187,6 +187,73 @@
   </div>
 </section>
 
+  <style>
+  .gallery-preview-section {
+    background-color: #f5e8da;
+    color: #2b192e;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .gallery-preview-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding: 1rem 0;
+    justify-content: start;
+  }
+
+  .carousel-container img {
+    scroll-snap-align: center;
+    height: 200px;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  .view-gallery-btn {
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #2b192e;
+    color: #f5e8da;
+    border: none;
+    border-radius: 999px;
+    font-family: 'OVO', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .view-gallery-btn:hover {
+    background-color: #462a4d;
+  }
+</style>
+
+<section class="gallery-preview-section">
+  <h2 class="gallery-preview-title">✨ Peek at the Photo Wall ✨</h2>
+
+  <div class="carousel-container">
+    <img src="images/sample1.jpg" alt="Gallery preview 1" />
+    <img src="images/sample2.jpg" alt="Gallery preview 2" />
+    <img src="images/sample3.jpg" alt="Gallery preview 3" />
+    <img src="images/sample4.jpg" alt="Gallery preview 4" />
+    <img src="images/sample5.jpg" alt="Gallery preview 5" />
+  </div>
+
+  <a href="guestgallery-view.html">
+    <button class="view-gallery-btn">View Full Photo Wall</button>
+  </a>
+</section>
+
+
 
 </body>
 </html>
