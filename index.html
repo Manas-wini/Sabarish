@@ -75,36 +75,70 @@
     </div>
   </section>
 
-  <!-- 🌻 Section 3: #SabKaMan Gallery -->
-<section class="flex flex-col md:flex-row justify-between items-center px-8 py-12 bg-[#2b192e] text-[#f5e8da]">
-  <!-- Left Side: Text Content -->
-  <div class="md:w-1/2 mb-8 md:mb-0">
-    <h2 class="text-3xl font-semibold mb-4">#SabKaMan</h2>
-    <p class="text-base leading-relaxed">
-      They say a picture's worth a thousand words —<br>
-      so we're writing this wedding story in a thousand frames.
-    </p>
-    <p class="mt-4 text-base leading-relaxed">
-      Swipe through all the shaadi sparkle in <strong>Our Gallery</strong><br>
-      and add your own snaps into the <strong>Guest Gallery</strong>!
-    </p>
-  </div>
+<!-- 🌻 Section: #SabKaMan Gallery with Carousels -->
+<section class="px-8 py-16 bg-[#2b192e] text-[#f5e8da] text-center">
+  <!-- Title -->
+  <h2 class="text-5xl font-playfair mb-4">#SabKaMan</h2>
+  <p class="text-xl font-ovo max-w-3xl mx-auto mb-12">
+    They say a picture's worth a thousand words —<br>
+    so we're writing this wedding story in a thousand frames.
+  </p>
 
-  <!-- Right Side: Navigation Cards -->
-  <div class="md:w-1/2 flex flex-col gap-6">
-    <!-- Our Gallery Card -->
-<a href="gallery.html" class="bg-pink-50 p-6 rounded-xl shadow-md hover:scale-105 transition-all duration-300 text-[#2b192e]">
-  <div class="text-xl font-semibold mb-1">Our Gallery</div>
-  <div class="text-sm text-[#2b192e]/80">The Highlight Reel ✨</div>
-</a>
+  <!-- Bottom Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <!-- Our Gallery Column -->
+    <div>
+      <h3 class="text-xl font-ovo mb-2">The Highlight Reels</h3>
+      <p class="text-base font-ovo mb-4">
+        Swipe through all the pro-shots of the shaadi sparkle in <strong>Our Gallery</strong>
+      </p>
 
-<!-- Guest Gallery Card -->
-<a href="guestgallery.html" class="bg-pink-50 p-6 rounded-xl shadow-md hover:scale-105 transition-all duration-300 text-[#2b192e]">
-  <div class="text-xl font-semibold mb-1">Guest Gallery</div>
-  <div class="text-sm text-[#2b192e]/80">The Real Reel 📸</div>
-</a>
+      <!-- Carousel -->
+      <div class="relative w-full overflow-hidden rounded-xl shadow-xl">
+        <div class="flex animate-scroll space-x-4">
+          <img src="images/og1.jpg" class="h-52 w-auto rounded-xl" alt="OG1">
+          <img src="images/og2.jpg" class="h-52 w-auto rounded-xl" alt="OG2">
+          <img src="images/og3.jpg" class="h-52 w-auto rounded-xl" alt="OG3">
+          <img src="images/og4.jpg" class="h-52 w-auto rounded-xl" alt="OG4">
+          <img src="images/og5.jpg" class="h-52 w-auto rounded-xl" alt="OG5">
+        </div>
+      </div>
+      <a href="gallery.html" class="inline-block mt-4 text-sm underline hover:text-[#f0cce3] transition">View More</a>
+    </div>
+
+    <!-- Guest Gallery Column -->
+    <div>
+      <h3 class="text-xl font-ovo mb-2">The Real Reels</h3>
+      <p class="text-base font-ovo mb-4">
+        Share your snaps of the wedding in the <strong>Guest Gallery</strong>
+      </p>
+
+      <!-- Carousel -->
+      <div class="relative w-full overflow-hidden rounded-xl shadow-xl">
+        <div class="flex animate-scroll space-x-4">
+          <img src="images/gg1.jpg" class="h-52 w-auto rounded-xl" alt="GG1">
+          <img src="images/gg2.jpeg" class="h-52 w-auto rounded-xl" alt="GG2">
+          <img src="images/placeholder-flower.png" class="h-52 w-auto rounded-xl opacity-50" alt="Placeholder">
+          <img src="images/placeholder-flower.png" class="h-52 w-auto rounded-xl opacity-50" alt="Placeholder">
+          <img src="images/placeholder-flower.png" class="h-52 w-auto rounded-xl opacity-50" alt="Placeholder">
+        </div>
+      </div>
+      <a href="guestgallery.html" class="inline-block mt-4 text-sm underline hover:text-[#f0cce3] transition">View More</a>
+    </div>
   </div>
 </section>
+
+<!-- Tailwind Scroll Animation -->
+<style>
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+</style>
 
    <!-- 💌 Section 4: RSVP -->
   <section class="px-8 py-12 bg-[#d8c4e6] text-[#2b192e] text-center">
