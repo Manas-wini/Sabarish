@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Engagement Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css" />
+  <style>
+    body {
+      background-color: #2b192e;
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 0;
+      color: #f5e8da;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      color: #f5e8da;
+      font-size: 32px;
+    }
+    #gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      padding: 1rem 2rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    #gallery a img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    #gallery a img:hover {
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body>
+  <header>Engagement, 02.02.2025</header>
+  <div id="gallery" class="gallery">
+    <!-- Images go here -->
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/zoom/lg-zoom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
+  <script>
+    const gallery = document.getElementById('gallery');
+    for (let i = 1; i <= 133; i++) {
+      if (i === 32) continue; // skip missing image 32
+      const link = document.createElement('a');
+      link.href = `images/gallery/engagement/${i}.jpg`;
+      link.setAttribute('data-lg-size', '1600-1067');
+      link.classList.add('gallery-item');
+
+      const img = document.createElement('img');
+      img.src = `images/gallery/engagement/${i}.jpg`;
+      img.alt = `Engagement photo ${i}`;
+      link.appendChild(img);
+
+      gallery.appendChild(link);
+    }
+
+    lightGallery(gallery, {
+      selector: '.gallery-item',
+      zoom: true,
+      thumbnail: true,
+      actualSize: false,
+      download: false,
+    });
+  </script>
+</body>
+</html>
