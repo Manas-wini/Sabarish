@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Engagement Album | #SabKaMan</title>
 
-  <!-- Tailwind CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Playfair & OVO Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Ovo&display=swap" rel="stylesheet" />
 
   <!-- Lightbox2 CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
-
-  <!-- Lightbox2 Script -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 
   <style>
     body {
@@ -25,6 +22,11 @@
     }
     h1 {
       font-family: 'Playfair Display', serif;
+    }
+    img {
+      object-fit: cover;
+      height: 200px;
+      width: 100%;
     }
   </style>
 </head>
@@ -37,14 +39,13 @@
 
   <!-- Gallery Grid -->
   <section class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <!-- Gallery Grid -->
+  <section class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
     <a href="images/gallery/engagement/1.JPG" data-lightbox="engagement-gallery">
   <img src="images/gallery/engagement/1.JPG" alt="Engagement Image 1" class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
 </a>
 <a href="images/gallery/engagement/2.JPG" data-lightbox="engagement-gallery">
   <img src="images/gallery/engagement/2.JPG" alt="Engagement Image 1" class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
-</a>
-<a href="images/gallery/engagement/3.JPG" data-lightbox="engagement-gallery">
-  <img src="images/gallery/engagement/3.JPG" alt="Engagement Image 1" class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
 </a>
 <a href="images/gallery/engagement/3.JPG" data-lightbox="engagement-gallery">
   <img src="images/gallery/engagement/3.JPG" alt="Engagement Image 1" class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
@@ -58,15 +59,19 @@
 <a href="images/gallery/engagement/6.JPG" data-lightbox="engagement-gallery">
   <img src="images/gallery/engagement/6.JPG" alt="Engagement Image 1" class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
 </a>
-
-    <!-- Start Inserting Your Image Blocks Below -->
-    <!-- Image 1 -->
-    <!-- Image 2 -->
-    <!-- Image 3 -->
-    <!-- ... -->
-    <!-- Image 132 -->
-    <!-- End Inserting Image Blocks Above -->
+<a href="images/gallery/engagement/7.JPG" data-lightbox="engagement-gallery">
+  <img src="images/gallery/engagement/7.JPG" alt="Engagement Image 1" class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300" />
+</a>
+    
   </section>
 
+  <!-- Lightbox2 JS (put at the bottom so it loads after the DOM is ready) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+
