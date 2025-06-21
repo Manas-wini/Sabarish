@@ -46,37 +46,87 @@
     <h1>The Real Reels</h1>
   </header>
 
-  <section class="welcome">
-    <p><strong>You are the heart of this ceremony</strong> — and we want to see the magic just as it happened.</p>
-    <p>From sparkling selfies to group hugs, from sweet candids to iconic poses — we want to see it all straight from your galleries.</p>
-    <p>So upload your faves, scroll through the memory wall, and help us build the wedding album no one saw coming — yours.</p>
-  </section>
+<!-- 💖 Welcome Section -->
+<section class="welcome">
+  <p><strong>You are the heart of this ceremony</strong><br>
+  And we want to see the magic just as it happened.</p>
 
-  <!-- CONTINUING INSIDE guestgallery.html -->
+  <p>From sparkling selfies to group hugs, from sweet candids to iconic poses —<br>
+  we want to see it all straight from your galleries.</p>
+
+  <p>So upload your faves, scroll through the memory wall, and help us build the wedding album no one saw coming — 
+  <strong><em>yours</em></strong>.</p>
+</section>
+
+<style>
+  .welcome {
+    background-color: #2b192e;
+    color: #f5e8da;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+
+  .welcome p {
+    max-width: 700px;
+    margin: 1.2rem auto;
+    font-family: 'Playfair Di
+
+<section class="upload-section" id="upload-area">
+  <div class="upload-wrapper">
+    <button class="upload-icon" id="uploadBtn" disabled title="Submissions open July 6 at the wedding!">📷</button>
+    <div class="upload-instructions" id="uploadMsg">
+      <p><strong>Guest Gallery opens July 6 — at the wedding!</strong></p>
+      <p>You’ll be able to upload your snaps, stories, and stunning candids right from your phone or camera roll.</p>
+      <p>Until then, sit tight — the magic’s about to begin 💛</p>
+    </div>
+  </div>
+
+  <form class="upload-form" method="POST" action="https://formspree.io/f/{your-form-id}" enctype="multipart/form-data" id="uploadForm">
+    <input type="text" name="name" placeholder="Your Full Name" required>
+    <input type="file" name="files" accept="image/*,video/*" multiple required>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
 <style>
   .upload-section {
-    text-align: center;
     padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .upload-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
   }
 
   .upload-icon {
-    font-size: 4rem;
+    font-size: 5rem;
     color: #2b192e;
     background: none;
     border: none;
     cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .upload-icon:enabled:hover {
+    transform: scale(1.15);
   }
 
   .upload-instructions {
     max-width: 600px;
-    margin: 1.5rem auto;
+    text-align: left;
     font-size: 1rem;
     line-height: 1.6;
   }
 
   .upload-form {
     display: none;
-    margin-top: 2rem;
     background-color: #f5e8da;
     padding: 2rem;
     border-radius: 1rem;
@@ -112,64 +162,38 @@
   }
 </style>
 
-<section class="upload-section">
-  <button class="upload-icon" onclick="toggleForm()">📷</button>
-  <div class="upload-instructions">
-    <p><strong>Here’s how to add your memories to the album:</strong></p>
-    <p>Click the camera icon to get started</p>
-    <p>Enter your full name (so there’s no mix up and we can keep your folder uniquely yours!)</p>
-    <p>Upload up to 25 photos or videos — (anything under 300MB total)</p>
-    <p>Hit submit and you’re done!</p>
-    <p>That’s it! Your moments will join the Guest Gallery soon — and yes, you can come back and upload again if you've got more to share later 💛</p>
-  </div>
-
-  <form class="upload-form" method="POST" action="https://formspree.io/f/{your-form-id}" enctype="multipart/form-data">
-    <input type="text" name="name" placeholder="Your Full Name" required>
-    <input type="file" name="files" accept="image/*,video/*" multiple required>
-    <button type="submit">Submit</button>
-  </form>
-</section>
-
 <script>
+  // ⏰ UNLOCK TIME - July 6, 2025 at 00:00 IST (UTC+5:30)
+  const unlockTimeIST = new Date('2025-07-06T00:00:00+05:30');
+
   function toggleForm() {
-    const form = document.querySelector('.upload-form');
+    const form = document.getElementById('uploadForm');
     form.style.display = form.style.display === 'block' ? 'none' : 'block';
   }
+
+  function checkUploadTime() {
+    const now = new Date();
+    const btn = document.getElementById('uploadBtn');
+    const msg = document.getElementById('uploadMsg');
+
+    if (now >= unlockTimeIST) {
+      btn.disabled = false;
+      btn.style.cursor = 'pointer';
+      btn.title = "Click to start uploading!";
+      btn.setAttribute("onclick", "toggleForm()");
+      msg.innerHTML = `
+        <p><strong>Here’s how to add your memories to the album:</strong></p>
+        <p>Click the camera icon to get started</p>
+        <p>Enter your full name (so there’s no mix up and we can keep your folder uniquely yours!)</p>
+        <p>Upload up to 25 photos or videos — (anything under 300MB total)</p>
+        <p>Hit submit and you’re done!</p>
+        <p>That’s it! Your moments will join the Guest Gallery soon — and yes, you can come back and upload again if you've got more to share later 💛</p>
+      `;
+    }
+  }
+
+  window.addEventListener('load', checkUploadTime);
 </script>
-
-  <style>
-  .bingo-section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    background-color: #2b192e;
-    color: #f5e8da;
-    padding: 3rem 2rem;
-    gap: 2rem;
-  }
-
-  .bingo-text {
-    flex: 1 1 350px;
-    max-width: 500px;
-    font-size: 1rem;
-    line-height: 1.6;
-    font-family: 'Playfair Display', serif;
-  }
-
-  .bingo-image {
-    flex: 1 1 300px;
-    max-width: 400px;
-    text-align: center;
-  }
-
-  .bingo-image img {
-    width: 100%;
-    max-width: 350px;
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
-</style>
 
 <section class="bingo-section">
   <div class="bingo-text">
@@ -179,7 +203,7 @@
     <p>When you’re ready to upload, click the camera icon above (just like before!)</p>
     <p>This time, enter your name followed by <strong>+BINGO</strong> (example: <em>Manas + BINGO</em>) so we can keep the challenge entries together.</p>
     <p>No pressure to complete the whole card — just have fun, chase the memories,</p>
-    <p>And help us brighten up our gallery with a little extra sparkle! 💛📷✨</p>
+    <p>and help us brighten up our gallery with a little extra sparkle! 💛📷✨</p>
   </div>
 
   <div class="bingo-image">
