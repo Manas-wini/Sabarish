@@ -29,13 +29,15 @@
 </body>
 </html>
 
-<!-- 🌸 Full-Width Responsive Header -->
+<!-- 🌸 Responsive Header with Aspect Ratio -->
 <header class="w-full bg-[#f5e8da] overflow-hidden">
-  <img 
-    src="images/header2.png" 
-    alt="Manaswini & Sabarish Banner" 
-    class="w-full h-[250px] md:h-[350px] lg:h-[450px] object-cover object-center shadow-md"
-  >
+  <div class="relative w-full aspect-[4/1] md:aspect-[6/1] lg:aspect-[8/1]">
+    <img 
+      src="images/header2.png" 
+      alt="Manaswini & Sabarish Banner" 
+      class="absolute inset-0 w-full h-full object-cover object-center shadow-md"
+    >
+  </div>
 </header>
 
 <!-- 🌺 Section 1: Welcome -->
