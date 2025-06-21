@@ -58,6 +58,7 @@
   <strong><em>yours</em></strong>.</p>
 </section>
 
+
 <style>
   .welcome {
     background-color: #2b192e;
@@ -71,18 +72,30 @@
   .welcome p {
     max-width: 700px;
     margin: 1.2rem auto;
-    font-family: 'Playfair Di
-
-<section class="upload-section" id="upload-area">
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    line-height: 1.9;
+  }
+</style>
+  
+<!-- 🌟 Section 2: Guest Upload Begins Here -->
+<section class="upload-section">
   <div class="upload-wrapper">
-    <button class="upload-icon" id="uploadBtn" disabled title="Submissions open July 6 at the wedding!">📷</button>
+    <!-- Camera Icon (Initially Disabled) -->
+    <button id="uploadBtn" class="upload-icon" title="The magic begins on July 6!">📷</button>
+
+    <!-- Upload Instructions -->
     <div class="upload-instructions" id="uploadMsg">
-      <p><strong>Guest Gallery opens July 6 — at the wedding!</strong></p>
-      <p>You’ll be able to upload your snaps, stories, and stunning candids right from your phone or camera roll.</p>
-      <p>Until then, sit tight — the magic’s about to begin 💛</p>
+      <p><strong>Here’s how to add your memories to the album:</strong></p>
+      <p>Click the camera icon to get started</p>
+      <p>Enter your full name (so there’s no mix up and we can keep your folder uniquely yours!)</p>
+      <p>Upload up to 25 photos or videos — (anything under 300MB total)</p>
+      <p>Hit submit and you’re done!</p>
+      <p>That’s it! Your moments will join the Guest Gallery soon — and yes, you can come back and upload again if you've got more to share later 💛</p>
     </div>
   </div>
 
+  <!-- Upload Form (Initially Hidden) -->
   <form class="upload-form" method="POST" action="https://formspree.io/f/{your-form-id}" enctype="multipart/form-data" id="uploadForm">
     <input type="text" name="name" placeholder="Your Full Name" required>
     <input type="file" name="files" accept="image/*,video/*" multiple required>
@@ -90,6 +103,7 @@
   </form>
 </section>
 
+<!-- 🌼 Styling for Upload Section -->
 <style>
   .upload-section {
     padding: 3rem 2rem;
@@ -100,8 +114,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
     flex-wrap: wrap;
+    gap: 2rem;
     margin-bottom: 2rem;
   }
 
@@ -112,10 +126,6 @@
     border: none;
     cursor: pointer;
     transition: transform 0.2s ease;
-  }
-
-  .upload-icon:enabled:hover {
-    transform: scale(1.15);
   }
 
   .upload-instructions {
@@ -131,8 +141,7 @@
     padding: 2rem;
     border-radius: 1rem;
     max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
   }
 
   .upload-form input[type="text"],
@@ -162,37 +171,28 @@
   }
 </style>
 
+<!-- 🔐 Unlock Logic: Show form only after July 6, Midnight IST -->
 <script>
-  // ⏰ UNLOCK TIME - July 6, 2025 at 00:00 IST (UTC+5:30)
-  const unlockTimeIST = new Date('2025-07-06T00:00:00+05:30');
+  window.addEventListener('DOMContentLoaded', function () {
+    const uploadBtn = document.getElementById('uploadBtn');
+    const uploadForm = document.getElementById('uploadForm');
 
-  function toggleForm() {
-    const form = document.getElementById('uploadForm');
-    form.style.display = form.style.display === 'block' ? 'none' : 'block';
-  }
-
-  function checkUploadTime() {
+    const unlockTime = new Date('2025-07-06T00:00:00+05:30');
     const now = new Date();
-    const btn = document.getElementById('uploadBtn');
-    const msg = document.getElementById('uploadMsg');
 
-    if (now >= unlockTimeIST) {
-      btn.disabled = false;
-      btn.style.cursor = 'pointer';
-      btn.title = "Click to start uploading!";
-      btn.setAttribute("onclick", "toggleForm()");
-      msg.innerHTML = `
-        <p><strong>Here’s how to add your memories to the album:</strong></p>
-        <p>Click the camera icon to get started</p>
-        <p>Enter your full name (so there’s no mix up and we can keep your folder uniquely yours!)</p>
-        <p>Upload up to 25 photos or videos — (anything under 300MB total)</p>
-        <p>Hit submit and you’re done!</p>
-        <p>That’s it! Your moments will join the Guest Gallery soon — and yes, you can come back and upload again if you've got more to share later 💛</p>
-      `;
+    if (now >= unlockTime) {
+      // Allow click to toggle form
+      uploadBtn.title = "Click to upload your memories!";
+      uploadBtn.addEventListener('click', () => {
+        uploadForm.style.display = uploadForm.style.display === 'block' ? 'none' : 'block';
+      });
+    } else {
+      // Before July 6 — show alert if clicked
+      uploadBtn.addEventListener('click', () => {
+        alert("✨ The magic begins on July 6 — see you at the wedding!");
+      });
     }
-  }
-
-  window.addEventListener('load', checkUploadTime);
+  });
 </script>
 
 <section class="bingo-section">
